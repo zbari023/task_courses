@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Detail</title>
+</head>
+<body>
+    <h1>Course Detail</h1>
+    <h2>{{ course.name }}</h2>
+    <img src="{{ course.image.url }}" alt="Course Image">
+    <p>Price: {{ course.price }}</p>
+    <p>Description: {{ course.description }}</p>
+    <p>Category: {{ course.category.name }}</p>
+    <p>Duration: {{ course.duration }} hours</p>
+
+    <h3>Reviews</h3>
+    {% for review in course.reviews_course.all %}
+        <p>Review by {{ review.user.username }}:</p>
+        <p>Rate: {{ review.rate }}/5</p>
+        <p>{{ review.review }}</p>
+        <p>Created at: {{ review.created_at }}</p>
+        <hr>
+    {% empty %}
+        <p>No reviews available.</p>
+    {% endfor %}
+</body>
+</html>
